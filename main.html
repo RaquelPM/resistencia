@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Quadrado Transladado</title>
+</head>
+<body>
+    <div class="container">
+        <div class="square" id="square">
+            <div class="eixo-z">z</div>
+            <div class="eixo-x">x</div>
+            <div class="eixo-y">y</div>
+            <div class="text-left" id="text-height" >150mm</div>
+            <div class="text-bottom" id="text-width">150mm</div>
+            <div class="text-middle" id="text-middle">20mm</div>
+            <div class="edge-bottom-left"></div>
+            <div class="edge-top-right"></div>
+        </div>
+        <form class="inputs" onsubmit="getFormValues(event)">
+            <label for="tensao-x">Tensão X</label>
+            <div class="inputs-group">
+                <input type="range" id="tensao-x" value="10"/>
+                <input type="number" id="tensao-x-number" value="10"/>
+            </div>
+            <label for="tensao-x">Tensão Y</label>
+            <div class="inputs-group">
+                <input type="range" id="tensao-y" value="10"/>
+                <input type="number" id="tensao-y-number" value="10"/>
+            </div>
+            <label for="tensao-x">Tensão Z</label>
+            <div class="inputs-group">
+                <input type="range" id="tensao-z" value="10"/>
+                <input type="number" id="tensao-z-number" value="10"/>
+            </div>
+            <label for="modulo">Modulo de elasticidade</label>
+            <div class="inputs-group">
+                <input type="range" id="modulo" max="2000000" value="200000" />
+                <input type="number" id="modulo-number" value="200000" />
+            </div>
+            <label for="coeficiente">Coeficiente de Poisson</label>
+            <div class="inputs-group">
+                <input type="range" id="coeficiente" max="1" value="0.3" />
+                <input type="number" id="coeficiente-number" value="0.3" />
+            </div>
+            <button>Calcular</button>
+        </form>
+    </div>
+    <script src="script.js"></script>
+    <script src="utils.js"></script>
+</body>
+</html>
