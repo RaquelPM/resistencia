@@ -35,10 +35,12 @@ document.addEventListener('mousemove', (e) => {
     const newBorder = originalBorder + deltaY;
 
     if (isResizingRightButton) {
-        if(newBorder < 10) return;
+        if(newBorder < 10 || newBorder > 500) return;
         resizableSquare.style.borderBottomWidth = newBorder + 'px';
         resizableSquare.style.borderRightWidth = newBorder + 'px';
         textMiddle.textContent = `${newBorder}mm`;
+        espessuraInput.value = newBorder;
+        espessuraInputNumber.value = newBorder;
         return;
     }
 
@@ -48,6 +50,11 @@ document.addEventListener('mousemove', (e) => {
     
     textWidth.textContent = `${newWidth}mm`;
     textHeight.textContent = `${newHeight}mm`;
+
+    comprimentoInput.value = newWidth;
+    larguraInput.value = newHeight;
+    comprimentoInputNumber.value = newWidth;
+    larguraInputNumber.value = newHeight;
 });
 
 document.addEventListener('mouseup', () => {
