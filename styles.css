@@ -20,7 +20,7 @@ body {
     width: 150px;
     height: 150px;
     margin-top: 250px;
-    background-color: grey;
+    background-color: purple;
     transform: rotateX(50deg) rotateZ(40deg);
     border-bottom: 20px solid rgba(0, 0, 0, 0.2);
     border-right: 20px solid rgba(0, 0, 0, 0.2);
@@ -51,6 +51,46 @@ input{
     flex-direction:row;
     justify-content: space-between;
     margin-bottom: 10px;
+}
+
+.select{
+    position:absolute;
+    top:20px;
+    left:30px;
+    font-size: 20px;
+}
+
+#select-material{
+    font-size: 20px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 80%;
+    margin-top: 30px;
+    left:0;
+}
+  
+table, th, td {
+    border: 1px solid black;
+}
+  
+th, td {
+    text-align: center;
+    padding: 8px;
+}
+  
+th {
+    background-color: #0047AB;
+    color:white;
+    
+}
+  
+tr:nth-child(even) {
+    background-color: #B2DFEE; 
+}
+tr:nth-child(odd) {
+    background-color: #4682B4 ;
 }
 
 .square::before,

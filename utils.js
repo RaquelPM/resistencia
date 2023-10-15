@@ -13,11 +13,17 @@ function connectRangeToNumeric(rangeEl, numericEl) {
     });
 }
 
+const coeficiente = document.getElementById('coeficiente');
+const coeficiente_number = document.getElementById('coeficiente-number');
+
+const modulo = document.getElementById('modulo');
+const modulo_number = document.getElementById('modulo-number');
+
 connectRangeToNumeric(document.getElementById('tensao-x'), document.getElementById('tensao-x-number'));
 connectRangeToNumeric(document.getElementById('tensao-y'), document.getElementById('tensao-y-number'));
 connectRangeToNumeric(document.getElementById('tensao-z'), document.getElementById('tensao-z-number'));
-connectRangeToNumeric(document.getElementById('modulo'), document.getElementById('modulo-number'));
-connectRangeToNumeric(document.getElementById('coeficiente'), document.getElementById('coeficiente-number'));
+connectRangeToNumeric(modulo, modulo_number);
+connectRangeToNumeric(coeficiente, coeficiente_number);
 connectRangeToNumeric(document.getElementById('espessura'), document.getElementById('espessura-number'));
 connectRangeToNumeric(document.getElementById('comprimento'), document.getElementById('comprimento-number'));
 connectRangeToNumeric(document.getElementById('largura'), document.getElementById('largura-number'));
@@ -76,6 +82,8 @@ const espessuraInputNumber = document.getElementById('espessura-number');
 const comprimentoInputNumber = document.getElementById('comprimento-number');
 const larguraInputNumber = document.getElementById('largura-number');
 
+const select = document.getElementById('select-material');
+
 espessuraInput.addEventListener('input', function() {
     resizableSquare.style.transition = 'none';
     resizableSquare.style.borderBottomWidth = this.value + 'px';
@@ -110,4 +118,57 @@ larguraInputNumber.addEventListener('input', function() {
     resizableSquare.style.transition = 'none';
     resizableSquare.style.height = this.value + 'px';
     textHeight.textContent = `${this.value}mm`;
+});
+
+
+select.addEventListener('change', function() {
+    const material = this.value;
+    if(material == 'none'){
+        coeficiente.disabled = coeficiente_number.disabled = false;
+        modulo.disabled = modulo_number.disabled = false;
+
+        resizableSquare.style.backgroundColor = 'purple';
+
+        return;
+    }
+
+    coeficiente.disabled = coeficiente_number.disabled = true;
+    modulo.disabled = modulo_number.disabled = true;
+
+    if(material == 'al'){
+        coeficiente.value = 0.33;
+        coeficiente_number.value = 0.33;
+        modulo.value = 70;
+        modulo_number.value = 70;
+
+        resizableSquare.style.backgroundColor = '#c0c0c0 ';
+    }
+
+    if(material == 'aco'){
+        coeficiente.value = 0.27;
+        coeficiente_number.value = 0.27;
+        modulo.value = 205;
+        modulo_number.value = 205;
+
+        resizableSquare.style.backgroundColor = '#696969 ';
+    }
+
+    if(material == 'cu'){
+        coeficiente.value = 0.34;
+        coeficiente_number.value = 0.34;
+        modulo.value = 110;
+        modulo_number.value = 110;
+
+        resizableSquare.style.backgroundColor = '#b87333';
+    }
+
+    if(material == 'latao'){
+        coeficiente.value = 0.32;
+        coeficiente_number.value = 0.32;
+        modulo.value = 100;
+        modulo_number.value = 100;
+
+        resizableSquare.style.backgroundColor = '#daa520';
+    }
+
 });

@@ -18,46 +18,85 @@
             <div class="edge-bottom-left"></div>
             <div class="edge-top-right"></div>
         </div>
+        <div class="select">   
+            <label for="select-material">Material:</label>
+            <select name="select-material" id="select-material">
+                <option value="none">Genérico</option>
+                <option value="al">Alumínio</option>
+                <option value="aco">Liga de Aço</option>
+                <option value="latao">Liga de latão</option>
+                <option value="cu">Liga de cobre</option>
+            </select>
+
+            <table>
+                <tr>
+                  <th>Material</th>
+                  <th>Módulo de Young (E) (GPa)</th>
+                  <th>Coeficiente de Poisson (ν)</th>
+                </tr>
+                <tr>
+                  <td>Alumínio</td>
+                  <td>70</td>
+                  <td>0.33</td>
+                </tr>
+                <tr>
+                  <td>Latão</td>
+                  <td>100</td>
+                  <td>0.32</td>
+                </tr>
+                <tr>
+                  <td>Aço</td>
+                  <td>205</td>
+                  <td>0.27</td>
+                </tr>
+                <tr>
+                  <td>Cobre</td>
+                  <td>110</td>
+                  <td>0.34</td>
+                </tr>
+              </table>
+        </div>
         <form class="inputs" onsubmit="getFormValues(event)">
+
             <label for="tensao-x">Espessura (mm)</label>
             <div class="inputs-group">
                 <input type="range" id="espessura" max="500" value="20"/>
-                <input type="number" id="espessura-number" value="20"/>
+                <input type="number" id="espessura-number" max="500" value="20"/>
             </div>
             <label for="tensao-x">Largura (mm)</label>
             <div class="inputs-group">
-                <input type="range" id="largura" max="500" value="150"/>
-                <input type="number" id="largura-number" value="150"/>
+                <input type="range" id="largura" max="600" value="150"/>
+                <input type="number" id="largura-number" max="600" value="150"/>
             </div>
             <label for="tensao-x">Comprimento (mm)</label>
             <div class="inputs-group">
-                <input type="range" id="comprimento" max="500" value="150"/>
-                <input type="number" id="comprimento-number" value="150"/>
+                <input type="range" id="comprimento" max="600" value="150"/>
+                <input type="number" id="comprimento-number" max="600" value="150"/>
             </div>
             <label for="tensao-x">Tensão X (MPa)</label>
             <div class="inputs-group">
                 <input type="range" id="tensao-x" value="10"/>
-                <input type="number" id="tensao-x-number" value="10"/>
+                <input type="number" id="tensao-x-number"  max="100" value="10"/>
             </div>
             <label for="tensao-x">Tensão Y (MPa)</label>
             <div class="inputs-group">
                 <input type="range" id="tensao-y" value="10"/>
-                <input type="number" id="tensao-y-number" value="10"/>
+                <input type="number" id="tensao-y-number" max="100" value="10"/>
             </div>
             <label for="tensao-x">Tensão Z (MPa)</label>
             <div class="inputs-group">
                 <input type="range" id="tensao-z" value="10"/>
-                <input type="number" id="tensao-z-number" value="10"/>
+                <input type="number" id="tensao-z-number"  max="100" value="10"/>
             </div>
             <label for="modulo">Modulo de elasticidade (GPa)</label>
             <div class="inputs-group">
-                <input type="range" id="modulo" max="200" value="200" />
-                <input type="number" id="modulo-number" value="200" />
+                <input type="range" id="modulo" max="210" value="200" />
+                <input type="number" id="modulo-number" max="210" value="200" />
             </div>
             <label for="coeficiente">Coeficiente de Poisson</label>
             <div class="inputs-group">
                 <input type="range" id="coeficiente" max="1" step="0.01" value="0.3" />
-                <input type="number" id="coeficiente-number" step="0.01" value="0.3" />
+                <input type="number" id="coeficiente-number" max="1" step="0.01" value="0.3" />
             </div>
             <button>Calcular</button>
         </form>

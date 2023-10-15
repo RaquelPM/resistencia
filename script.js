@@ -44,7 +44,7 @@ document.addEventListener('mousemove', (e) => {
         return;
     }
 
-    if(newWidth < 10 || newHeight < 10) return;
+    if(newWidth < 10 || newHeight < 10 || newWidth > 600 || newHeight > 600) return;
     resizableSquare.style.width = newWidth + 'px';
     resizableSquare.style.height = newHeight + 'px';
     
