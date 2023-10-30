@@ -54,24 +54,30 @@
                   <td>110</td>
                   <td>0.34</td>
                 </tr>
-              </table>
+            </table>
+
+            <div class="deltas">
+                <p id="deltaXText">Δx = 0mm</p>
+                <p id="deltaYText">Δy = 0mm</p>
+                <p id="deltaZText">Δz = 0mm</p>
+            </div>
         </div>
         <form class="inputs" onsubmit="getFormValues(event)">
 
             <label for="tensao-x">Espessura (mm)</label>
             <div class="inputs-group">
-                <input type="range" id="espessura" max="500" value="20"/>
-                <input type="number" id="espessura-number" max="500" value="20"/>
+                <input type="range" id="espessura" min="10" max="500" value="20"/>
+                <input type="number" id="espessura-number" min="10" max="500" value="20"/>
             </div>
             <label for="tensao-x">Largura (mm)</label>
             <div class="inputs-group">
-                <input type="range" id="largura" max="600" value="150"/>
-                <input type="number" id="largura-number" max="600" value="150"/>
+                <input type="range" id="largura" min="10" max="600" value="150"/>
+                <input type="number" id="largura-number" min="10" max="600" value="150"/>
             </div>
             <label for="tensao-x">Comprimento (mm)</label>
             <div class="inputs-group">
-                <input type="range" id="comprimento" max="600" value="150"/>
-                <input type="number" id="comprimento-number" max="600" value="150"/>
+                <input type="range" id="comprimento" min="10" max="600" value="150"/>
+                <input type="number" id="comprimento-number" min="10" max="600" value="150"/>
             </div>
             <label for="tensao-x">Tensão X (MPa)</label>
             <div class="inputs-group">

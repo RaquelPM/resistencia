@@ -49,9 +49,21 @@ function getFormValues(e) {
     let Tz = parseInt(values['tensao-z']) * 1000000;
     let v = parseInt(values['coeficiente']);
 
-    let deltaX = (x/E) * (Tx - v*(Ty + Tz));
-    let deltaY = (y/E) * (Ty - v*(Tx + Tz));
-    let deltaZ = (z/E) * (Tz - v*(Tx + Ty));
+    let epsilonX = (x/E) * (Tx - v*(Ty + Tz));
+    let epsilonY = (y/E) * (Ty - v*(Tx + Tz));
+    let epsilonZ = (z/E) * (Tz - v*(Tx + Ty));
+
+    let deltaX = epsilonX * x;
+    let deltaY = epsilonY * y;
+    let deltaZ = epsilonZ * z;
+
+    const deltaXText = document.getElementById('deltaXText');
+    const deltaYText = document.getElementById('deltaYText');
+    const deltaZText = document.getElementById('deltaZText');
+
+    deltaXText.textContent = 'Δx =' + deltaX.toFixed(4) + ' mm';
+    deltaYText.textContent = 'Δy =' + deltaY.toFixed(4) + ' mm';
+    deltaZText.textContent = 'Δz =' + deltaZ.toFixed(4) + ' mm';
 
     resizableSquare.style.width = (x + deltaX) + 'px';
     textWidth.textContent = `${x+deltaX}mm`;
