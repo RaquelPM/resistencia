@@ -40,51 +40,50 @@ function getFormValues(e) {
 
     console.log(values);
 
-    let x = parseInt(getComputedStyle(resizableSquare, null).getPropertyValue('width'));
-    let z = parseInt(getComputedStyle(resizableSquare, null).getPropertyValue('height'));
-    let y = parseInt(getComputedStyle(resizableSquare, null).getPropertyValue('border-bottom-width'));
+    let x = parseInt(getComputedStyle(resizableSquare, null).getPropertyValue('width')) * 0.001;
+    let z = parseInt(getComputedStyle(resizableSquare, null).getPropertyValue('height')) * 0.001;
+    let y = parseInt(getComputedStyle(resizableSquare, null).getPropertyValue('border-bottom-width')) * 0.001;
     let E = parseInt(values['modulo']) * 1000000000;
     let Tx = parseInt(values['tensao-x']) * 1000000;
     let Ty = parseInt(values['tensao-y']) * 1000000;
     let Tz = parseInt(values['tensao-z']) * 1000000;
-    let v = parseInt(values['coeficiente']);
+    let v = parseFloat(values['coeficiente']);
 
-    let epsilonX = (x/E) * (Tx - v*(Ty + Tz));
-    let epsilonY = (y/E) * (Ty - v*(Tx + Tz));
-    let epsilonZ = (z/E) * (Tz - v*(Tx + Ty));
+    let epsilonX = (Tx - v*(Ty + Tz))/E;
+    let epsilonY = (Ty - v*(Tx + Tz))/E;
+    let epsilonZ = (Tz - v*(Tx + Ty))/E;
 
     let deltaX = epsilonX * x;
     let deltaY = epsilonY * y;
     let deltaZ = epsilonZ * z;
 
+    x = (deltaX + x)*1000;
+    y = (deltaY + y)*1000; 
+    z = (deltaZ + z)*1000;
+
+    deltaX = deltaX*1000;
+    deltaY = deltaY*1000;
+    deltaZ = deltaZ*1000;
+
     const deltaXText = document.getElementById('deltaXText');
     const deltaYText = document.getElementById('deltaYText');
     const deltaZText = document.getElementById('deltaZText');
 
-    deltaXText.textContent = 'Δx =' + deltaX.toFixed(4) + ' mm';
-    deltaYText.textContent = 'Δy =' + deltaY.toFixed(4) + ' mm';
-    deltaZText.textContent = 'Δz =' + deltaZ.toFixed(4) + ' mm';
+    deltaXText.textContent = 'Δx =' + deltaX.toFixed(5) + ' mm';
+    deltaYText.textContent = 'Δy =' + deltaY.toFixed(5) + ' mm';
+    deltaZText.textContent = 'Δz =' + deltaZ.toFixed(5) + ' mm';
 
-    resizableSquare.style.width = (x + deltaX) + 'px';
-    textWidth.textContent = `${x+deltaX}mm`;
+    resizableSquare.style.width = x + 'px';
+    textWidth.textContent = `${x.toFixed(2)}mm`;
 
-    resizableSquare.style.height = (z + deltaZ) + 'px';
-    textHeight.textContent = `${z + deltaZ}mm`;
+    resizableSquare.style.height = z + 'px';
+    textHeight.textContent = `${z.toFixed(2)}mm`;
 
-    resizableSquare.style.borderBottomWidth = (y + deltaY) + 'px';
-    resizableSquare.style.borderRightWidth = (y + deltaY) + 'px';
-    textMiddle.textContent = `${y + deltaY}mm`;
+    resizableSquare.style.borderBottomWidth = y + 'px';
+    resizableSquare.style.borderRightWidth = y + 'px';
+    textMiddle.textContent = `${y.toFixed(2)}mm`;
 
-    // espessuraInput.value = y + deltaY;
-    // espessuraInputNumber.value = y + deltaY;
-
-    // comprimentoInput.value = x + deltaX;
-    // larguraInput.value = z + deltaZ;
-
-    // comprimentoInputNumber.value = x + deltaX;
-    // larguraInputNumber.value = z + deltaZ;
-
-    console.log(deltaX, deltaY, deltaZ);
+    vf.textContent = 'Vf = ' + ((x)*(z)*(y)*0.001).toFixed(2) + 'cm³';
 }
 
 const espessuraInput = document.getElementById('espessura');
@@ -94,6 +93,8 @@ const espessuraInputNumber = document.getElementById('espessura-number');
 const comprimentoInputNumber = document.getElementById('comprimento-number');
 const larguraInputNumber = document.getElementById('largura-number');
 
+//const vi = document.getElementById('vi');
+
 const select = document.getElementById('select-material');
 
 espessuraInput.addEventListener('input', function() {
@@ -101,6 +102,8 @@ espessuraInput.addEventListener('input', function() {
     resizableSquare.style.borderBottomWidth = this.value + 'px';
     resizableSquare.style.borderRightWidth = this.value + 'px';
     textMiddle.textContent = `${this.value}mm`;
+
+    vi.textContent = `Vi = ${(comprimentoInput.value * larguraInput.value * espessuraInput.value * 0.001).toFixed(2)}cm³`;
 });
 
 espessuraInputNumber.addEventListener('input', function() {
@@ -108,30 +111,41 @@ espessuraInputNumber.addEventListener('input', function() {
     resizableSquare.style.borderBottomWidth = this.value + 'px';
     resizableSquare.style.borderRightWidth = this.value + 'px';
     textMiddle.textContent = `${this.value}mm`;
+
+    vi.textContent = `Vi = ${(comprimentoInput.value * larguraInput.value * espessuraInput.value * 0.001).toFixed(2)}cm³`;
 });
 
 comprimentoInput.addEventListener('input', function() {
     resizableSquare.style.transition = 'none';
     resizableSquare.style.width = this.value + 'px';
     textWidth.textContent = `${this.value}mm`;
+
+    vi.textContent = `Vi = ${(comprimentoInput.value * larguraInput.value * espessuraInput.value * 0.001).toFixed(2)}cm³`;
 });
+
 comprimentoInputNumber.addEventListener('input', function() {
     resizableSquare.style.transition = 'none';
     resizableSquare.style.width = this.value + 'px';
     textWidth.textContent = `${this.value}mm`;
+
+    vi.textContent = `Vi = ${(comprimentoInput.value * larguraInput.value * espessuraInput.value * 0.001).toFixed(2)}cm³`;
 });
 
 larguraInput.addEventListener('input', function() {
     resizableSquare.style.transition = 'none';
     resizableSquare.style.height = this.value + 'px';
     textHeight.textContent = `${this.value}mm`;
+
+    vi.textContent = `Vi = ${(comprimentoInput.value * larguraInput.value * espessuraInput.value * 0.001).toFixed(2)}cm³`;
 });
+
 larguraInputNumber.addEventListener('input', function() {
     resizableSquare.style.transition = 'none';
     resizableSquare.style.height = this.value + 'px';
     textHeight.textContent = `${this.value}mm`;
-});
 
+    vi.textContent = `Vi = ${(comprimentoInput.value * larguraInput.value * espessuraInput.value * 0.001).toFixed(2)}cm³`;
+});
 
 select.addEventListener('change', function() {
     const material = this.value;

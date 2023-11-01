@@ -2,6 +2,10 @@ const resizableSquare = document.getElementById('square');
 const textWidth = document.getElementById('text-width');
 const textHeight = document.getElementById('text-height');
 const textMiddle = document.getElementById('text-middle');
+
+const vi = document.getElementById('vi');
+const vf = document.getElementById('vf');
+
 let isResizing = false;
 let isResizingRightButton = false; 
 let originalX, originalY, originalBorder, originalWidth, originalHeight;
@@ -55,6 +59,9 @@ document.addEventListener('mousemove', (e) => {
     larguraInput.value = newHeight;
     comprimentoInputNumber.value = newWidth;
     larguraInputNumber.value = newHeight;
+
+    vi.textContent = `Vi = ${(comprimentoInput.value * larguraInput.value * espessuraInput.value * 0.001).toFixed(2)}cm³`;
+    vf.textContent = `Vf = - cm³`;
 });
 
 document.addEventListener('mouseup', () => {

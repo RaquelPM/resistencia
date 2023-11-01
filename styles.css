@@ -201,3 +201,10 @@ tr:nth-child(odd) {
     z-index:4;
 }
 
+.dimensions{
+    display: flex;
+}
+
+.volumes{
+    margin-left: 20px;
+}
